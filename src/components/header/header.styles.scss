@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .option {
+    padding: 8px;
+    font-size: 20px;
+    text-decoration: none;
+    color: #000000;
+  }
+
+  .option:hover {
+    text-decoration: underline;
+  }
+}
