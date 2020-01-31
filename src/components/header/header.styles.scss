@@ -3,11 +3,17 @@
   justify-content: space-between;
   align-items: center;
 
+  .options {
+    display: flex;
+    flex-direction: row;
+  }
+
   .option {
-    padding: 8px;
+    padding: 16px;
     font-size: 20px;
     text-decoration: none;
     color: #000000;
+    cursor: pointer;
   }
 
   .option:hover {

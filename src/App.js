@@ -8,17 +8,39 @@ import SignInUpPage from "./pages/sign-in-up/sign-in-up.component.jsx";
 
 import Header from "./components/header/header.component.jsx";
 
-function App() {
-  return (
-    <div>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/shop" component={ShopPage} />
-        <Route path="/signin" component={SignInUpPage} />
-      </Switch>
-    </div>
-  );
+import {auth} from "./firebase/firebase.utils.js";
+
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      currentUser: null
+    };
+  }
+
+  unsibscribeFromAuth = null;
+
+  componentDidMount() {
+    this.unsibscribeFromAuth = auth.onAuthStateChanged(user => this.setState({currentUser: user}));
+  }
+
+  componentWillUnmount() {
+    this.unsibscribeFromAuth();
+  }
+
+  render() {
+    return (
+      <div>
+        <Header currentUser={this.state.currentUser} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route path="/signin" component={SignInUpPage} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
