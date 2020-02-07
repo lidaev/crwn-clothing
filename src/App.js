@@ -8,10 +8,11 @@ import ShopPage from "./pages/shop/shop.component.jsx";
 import SignInUpPage from "./pages/sign-in-up/sign-in-up.component.jsx";
 
 import Header from "./components/header/header.component.jsx";
+import CustomButton from "./components/custom-button/custom-button.component.jsx";
 
 import {auth, createUserProfileDocument} from "./firebase/firebase.utils.js";
 
-import {setCurrentUser} from "./redux/user/user.actions.js";
+import {setCurrentUser, addCartItem} from "./redux/user/user.actions.js";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -40,6 +41,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <CustomButton onClick={this.props.addCartItem.bind({item: "cart item"})}>ADD ITEM</CustomButton>
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
@@ -60,7 +62,8 @@ const mapStateToProps = ({user}) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  setCurrentUser: user => dispatch(setCurrentUser(user)),
+  addCartItem: item => dispatch(addCartItem(item))
 });
 
 export default connect(

@@ -7,6 +7,9 @@ import {auth} from "../../firebase/firebase.utils.js";
 
 import "./header.styles.scss";
 
+import Cart from "../cart/cart.component.jsx";
+import CustomButton from "../custom-button/custom-button.component.jsx";
+
 const Header = ({currentUser}) => (
   <div className="header">
     <Link to="/">
@@ -33,6 +36,7 @@ const Header = ({currentUser}) => (
           SIGN IN
         </Link>
       )}
+      <Cart />
     </div>
   </div>
 );
