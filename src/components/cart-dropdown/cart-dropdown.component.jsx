@@ -5,10 +5,11 @@ import "./cart-dropdown.styles.scss";
 
 import CartDropdownItem from "../cart-dropdown-item/cart-dropdown-item.component.jsx";
 import CustomButton from "../custom-button/custom-button.component.jsx";
+import {isTaggedTemplateExpression} from "@babel/types";
 
 const CartDropdown = ({cartItems}) => (
   <div className="cart-dropdown">
-    {cartItems ? cartItems.map(item => <CartDropdownItem {...item}></CartDropdownItem>) : null}
+    {cartItems ? cartItems.map(item => <CartDropdownItem key={item.id} {...item}></CartDropdownItem>) : null}
 
     <CustomButton>GO TO CHECKOUT</CustomButton>
   </div>
