@@ -1,9 +1,16 @@
 .cart-dropdown-item {
   display: flex;
-  justify-content: center;
+  margin: 8px;
+  justify-content: space-between;
+  align-items: center;
 
   .photo {
     height: 70px;
     width: 50px;
+    background-size: cover;
+  }
+
+  .item-info {
+    text-align: right;
   }
 }

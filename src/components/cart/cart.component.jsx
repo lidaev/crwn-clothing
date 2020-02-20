@@ -10,11 +10,15 @@ import {ReactComponent as CartIcon} from "../../assets/shopping-bag.svg";
 const Cart = ({cartItems, toggleCartVisibility}) => (
   <div className="cart-icon" onClick={toggleCartVisibility}>
     <CartIcon className="shopping-icon" />
-    <span className="item-count">{cartItems.length}</span>
+    <span className="item-count">{calcAmount(cartItems)}</span>
   </div>
 );
 
-const mapStateToProps = ({user: {cartItems}}) => ({
+const calcAmount = cartItems => {
+  return cartItems.reduce((acc, item) => acc + item.quantity, 0);
+};
+
+const mapStateToProps = ({cart: {cartItems}}) => ({
   cartItems: cartItems
 });
 

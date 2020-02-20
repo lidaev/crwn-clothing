@@ -8,11 +8,10 @@ import ShopPage from "./pages/shop/shop.component.jsx";
 import SignInUpPage from "./pages/sign-in-up/sign-in-up.component.jsx";
 
 import Header from "./components/header/header.component.jsx";
-import CartDropdown from "./components/cart-dropdown/cart-dropdown.component.jsx";
 
 import {auth, createUserProfileDocument} from "./firebase/firebase.utils.js";
 
-import {setCurrentUser, addCartItem} from "./redux/user/user.actions.js";
+import {setCurrentUser} from "./redux/user/user.actions.js";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -61,8 +60,7 @@ const mapStateToProps = ({user}) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user)),
-  addCartItem: item => dispatch(addCartItem(item))
+  setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
 export default connect(
