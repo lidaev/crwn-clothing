@@ -12,3 +12,7 @@ export const cartVisibilitySelector = createSelector(
 export const cartQuantitySelector = createSelector([cartItemsSelector], items =>
   items.reduce((acc, item) => acc + item.quantity, 0)
 );
+
+export const totalPriceSelector = createSelector([cartItemsSelector], items =>
+  items.reduce((acc, item) => acc + item.price * item.quantity, 0)
+);
