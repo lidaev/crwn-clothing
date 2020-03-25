@@ -15,7 +15,7 @@ const CollectionItem = ({id, name, price, imageUrl, addCartItem}) => (
     </CustomButton>
     <div className="collection-footer">
       <span className="name">{name}</span>
-      <span className="price">{price}</span>
+      <span className="price">${price}</span>
     </div>
   </div>
 );
@@ -24,7 +24,4 @@ const mapDispatchToProps = dispatch => ({
   addCartItem: item => dispatch(addCartItem(item))
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(CollectionItem);
+export default connect(null, mapDispatchToProps)(CollectionItem);
