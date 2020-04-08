@@ -1,4 +1,6 @@
-.cart-dropdown {
+import styled from "styled-components";
+
+export const CartDropdownWrapper = styled.div`
   background-color: #ffffff;
   width: 250px;
   height: 350px;
@@ -15,4 +17,4 @@
   button {
     margin-top: auto;
   }
-}
+`;

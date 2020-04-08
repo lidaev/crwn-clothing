@@ -1,54 +1,47 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import {createStructuredSelector} from "reselect";
 
-import { cartVisibilitySelector } from "../../redux/cart/cart.selector";
-import { userSelector } from "../../redux/user/user.selectors";
+import {cartVisibilitySelector} from "../../redux/cart/cart.selector";
+import {userSelector} from "../../redux/user/user.selectors";
 
-import { ReactComponent as Logo } from "../../assets/crown.svg";
-import { auth } from "../../firebase/firebase.utils.js";
-
-import "./header.styles.scss";
+import {ReactComponent as Logo} from "../../assets/crown.svg";
+import {auth} from "../../firebase/firebase.utils.js";
 
 import Cart from "../cart/cart.component.jsx";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component.jsx";
 
-const Header = ({ currentUser, hidden }) => (
-  <div className="header">
-    <Link to="/">
+import {HeaderWrapper, OptionLinkWrapper, OptionDivWrapper, LogoWrapper, OptionsWrapper} from "./header.styles";
+
+const Header = ({currentUser, hidden}) => (
+  <HeaderWrapper>
+    <LogoWrapper to="/">
       <Logo className="logo" />
-    </Link>
-    <div className="options">
-      <Link className="option" to="/shop">
-        SHOP
-      </Link>
-      <Link className="option" to="/shop">
-        CONTACT
-      </Link>
+    </LogoWrapper>
+    <OptionsWrapper>
+      <OptionLinkWrapper to="/shop">SHOP</OptionLinkWrapper>
+      <OptionLinkWrapper to="/shop">CONTACT</OptionLinkWrapper>
       {currentUser ? (
-        <div
-          className="option"
+        <OptionDivWrapper
           onClick={() => {
             auth.signOut();
           }}
         >
           SIGN OUT
-        </div>
+        </OptionDivWrapper>
       ) : (
-        <Link className="option" to="/signin">
-          SIGN IN
-        </Link>
+        <OptionLinkWrapper to="/signin">SIGN IN</OptionLinkWrapper>
       )}
       <Cart />
-    </div>
+    </OptionsWrapper>
     {hidden ? null : <CartDropdown></CartDropdown>}
-  </div>
+  </HeaderWrapper>
 );
 
 const mapStateToProps = createStructuredSelector({
   currentUser: userSelector,
-  hidden: cartVisibilitySelector
+  hidden: cartVisibilitySelector,
 });
 
 export default connect(mapStateToProps)(Header);

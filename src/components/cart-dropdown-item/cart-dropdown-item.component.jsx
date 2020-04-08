@@ -1,17 +1,17 @@
 import React from "react";
 
-import "./cart-dropdown-item.styles.scss";
+import {CartDropdownItemWrapper, PhotoWrapper, ItemInfoWrapper, TitleWrapper} from "./cart-dropdown-item.styles";
 
 const CartDropdownItem = ({id, name, price, imageUrl, quantity}) => (
-  <div className="cart-dropdown-item">
-    <div className="photo" style={{backgroundImage: `url(${imageUrl})`}}></div>
-    <div className="item-info">
-      <div className="title">{name}</div>
+  <CartDropdownItemWrapper>
+    <PhotoWrapper imageUrl={imageUrl}></PhotoWrapper>
+    <ItemInfoWrapper>
+      <TitleWrapper>{name}</TitleWrapper>
       <div>
         {quantity} x ${price}
       </div>
-    </div>
-  </div>
+    </ItemInfoWrapper>
+  </CartDropdownItemWrapper>
 );
 
 export default CartDropdownItem;

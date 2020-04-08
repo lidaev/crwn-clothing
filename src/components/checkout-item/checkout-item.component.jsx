@@ -3,34 +3,37 @@ import {connect} from "react-redux";
 
 import {addCartItem, decreaseCartItem, removeCartItem} from "../../redux/cart/cart.actions";
 
-import "./checkout-item.styles.scss";
-
+import {
+  CheckoutItemWrapper,
+  ImageContainerWrapper,
+  NameWrapper,
+  QuantityWrapper,
+  PriceWrapper,
+  ButtonWrapper,
+  RemoveButtonWrapper,
+} from "./checkout-item.styles";
 const CheckoutItem = ({imageUrl, name, quantity, price, id, addCartItem, decreaseCartItem, removeCartItem}) => (
-  <div className="checkout-item">
-    <div className="image-container">
+  <CheckoutItemWrapper>
+    <ImageContainerWrapper>
       <img alt="img" src={imageUrl}></img>
-    </div>
-    <div className="name">{name}</div>
-    <div className="quantity">
-      <div className="button" onClick={() => decreaseCartItem({imageUrl, name, quantity, price, id})}>
-        &#10094;
-      </div>
+    </ImageContainerWrapper>
+    <NameWrapper>{name}</NameWrapper>
+    <QuantityWrapper className="quantity">
+      <ButtonWrapper onClick={() => decreaseCartItem({imageUrl, name, quantity, price, id})}>&#10094;</ButtonWrapper>
       {quantity}
-      <div className="button" onClick={() => addCartItem({imageUrl, name, quantity, price, id})}>
-        &#10095;
-      </div>
-    </div>
-    <div className="price">${price}</div>
-    <div className="button remove-button" onClick={() => removeCartItem({imageUrl, name, quantity, price, id})}>
+      <ButtonWrapper onClick={() => addCartItem({imageUrl, name, quantity, price, id})}>&#10095;</ButtonWrapper>
+    </QuantityWrapper>
+    <PriceWrapper>${price}</PriceWrapper>
+    <RemoveButtonWrapper onClick={() => removeCartItem({imageUrl, name, quantity, price, id})}>
       &#10005;
-    </div>
-  </div>
+    </RemoveButtonWrapper>
+  </CheckoutItemWrapper>
 );
 
-const mapDispatchToProps = dispatch => ({
-  addCartItem: item => dispatch(addCartItem(item)),
-  decreaseCartItem: item => dispatch(decreaseCartItem(item)),
-  removeCartItem: item => dispatch(removeCartItem(item))
+const mapDispatchToProps = (dispatch) => ({
+  addCartItem: (item) => dispatch(addCartItem(item)),
+  decreaseCartItem: (item) => dispatch(decreaseCartItem(item)),
+  removeCartItem: (item) => dispatch(removeCartItem(item)),
 });
 
 export default connect(null, mapDispatchToProps)(CheckoutItem);

@@ -8,46 +8,53 @@ import {totalPriceSelector} from "../../redux/cart/cart.selector";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
 
-import "./checkout.styles.scss";
+import {
+  CheckoutPageContainer,
+  CheckoutHeaderContainer,
+  HeaderBlockContainer,
+  CartItemsContainer,
+  TotalContainer,
+  WarningContainer,
+} from "./checkout.styles";
 
 const CheckoutPage = ({cartItems, total}) => (
-  <div className="checkout-page">
-    <div className="checkout-header">
-      <div className="header-block">
+  <CheckoutPageContainer>
+    <CheckoutHeaderContainer>
+      <HeaderBlockContainer>
         <span>Product</span>
-      </div>
-      <div className="header-block">
+      </HeaderBlockContainer>
+      <HeaderBlockContainer>
         <span>Desciption</span>
-      </div>
-      <div className="header-block">
+      </HeaderBlockContainer>
+      <HeaderBlockContainer>
         <span>Quantity</span>
-      </div>
-      <div className="header-block">
+      </HeaderBlockContainer>
+      <HeaderBlockContainer>
         <span>Price</span>
-      </div>
-      <div className="header-block">
+      </HeaderBlockContainer>
+      <HeaderBlockContainer>
         <span>Remove</span>
-      </div>
-    </div>
-    <div className="cart-items">
-      {cartItems.map(item => (
+      </HeaderBlockContainer>
+    </CheckoutHeaderContainer>
+    <CartItemsContainer>
+      {cartItems.map((item) => (
         <CheckoutItem key={item.id} {...item} />
       ))}
-    </div>
-    <div className="total">TOTAL: ${total}</div>
-    <div className="test-warning">
+    </CartItemsContainer>
+    <TotalContainer>TOTAL: ${total}</TotalContainer>
+    <WarningContainer>
       *Please use the following creadit card information for test payments
       <br />
       4242 4242 4242 4242 - Exp: 11/20 - CVV: 123
-    </div>
+    </WarningContainer>
     <StripeCheckoutButton price={total} />
-  </div>
+  </CheckoutPageContainer>
 );
 
 const mapStateToProps = () =>
   createStructuredSelector({
     cartItems: cartItemsSelector,
-    total: totalPriceSelector
+    total: totalPriceSelector,
   });
 
 export default connect(mapStateToProps)(CheckoutPage);
